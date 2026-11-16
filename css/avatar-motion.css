@@ -1,0 +1,273 @@
+/* ==========================================================================
+   MOSTAFA ELTAWEEL — AUTHENTIC AVATAR & ULTRA-COMPACT SPEECH SYSTEM
+   File: css/avatar-motion.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. AVATAR STAGE CONTAINER (Clean Anchored Stance & Smart Roaming)
+   -------------------------------------------------------------------------- */
+.avatar-stage-container {
+  position: fixed;
+  right: 4vw !important;
+  left: auto !important;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  pointer-events: auto;
+  user-select: none;
+  gap: 14px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+/* SMART ROAMING EVASION (Moves speech bubble overhead to prevent search bar collision) */
+.avatar-stage-container.evade-mode {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+}
+
+.avatar-stage-container.evade-mode .compact-speech-bubble {
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+  order: -1 !important;
+  width: 280px !important;
+  max-width: 320px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55) !important;
+  animation: evade-bubble-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.avatar-stage-container.evade-mode .compact-bubble-arrow {
+  top: auto !important;
+  bottom: -8px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  border-left: 6px solid transparent !important;
+  border-right: 6px solid transparent !important;
+  border-top: 8px solid var(--bubble-bg, #ffffff) !important;
+  border-bottom: none !important;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15)) !important;
+}
+
+@keyframes evade-bubble-pop {
+  0% { transform: translateY(12px) scale(0.94); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. AVATAR POSE WRAPPER & GROUND SHADOW
+   -------------------------------------------------------------------------- */
+.avatar-pose-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 230px;
+  height: 500px;
+}
+
+/* Avatar Pose Image (Authentic User Cutouts: 460x950 tight bounding box) */
+.avatar-pose-img {
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.55));
+  animation: avatar-subtle-breathing 4.5s ease-in-out infinite;
+  transform-origin: bottom center;
+  transition: opacity 0.25s ease;
+}
+
+@keyframes avatar-subtle-breathing {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.006); }
+}
+
+/* Authentic Ground Shadow Beneath Shoes */
+.avatar-ground-shadow {
+  position: absolute;
+  bottom: 4px;
+  width: 160px;
+  height: 16px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 75%);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme="light"] .avatar-ground-shadow {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   3. ULTRA-COMPACT FROSTED GLASS SPEECH BUBBLE (Small & Clean)
+   -------------------------------------------------------------------------- */
+.compact-speech-bubble {
+  position: relative;
+  width: 280px;
+  max-width: 85vw;
+  background: var(--bubble-bg, #ffffff);
+  color: var(--bubble-text, #0f172a);
+  border: 1.5px solid var(--border-color, rgba(255, 255, 255, 0.2));
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--font-en, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin-top: 50px; /* Aligned nicely with mouth/head height */
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .compact-speech-bubble {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Arrow pointing directly right towards mouth */
+.compact-bubble-arrow {
+  position: absolute;
+  top: 22px;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid var(--bubble-bg, #ffffff);
+  filter: drop-shadow(2px 0 2px rgba(0, 0, 0, 0.12));
+}
+
+/* Speech Text */
+.compact-speech-text {
+  margin: 0;
+  font-weight: 550;
+  word-break: break-word;
+}
+
+/* Action Links inside Bubble */
+.compact-speech-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.compact-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 9999px;
+  background: var(--text-color, #0f172a);
+  color: var(--bg-color, #ffffff) !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  white-space: nowrap;
+}
+
+.compact-action-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE DESIGN (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .avatar-pose-wrapper {
+    width: 190px;
+    height: 420px;
+  }
+  .compact-speech-bubble {
+    width: 250px;
+    margin-top: 40px;
+  }
+}
+
+/* Mobile: Sits directly above the Question Bar with ZERO gap */
+@media (max-width: 768px) {
+  .avatar-stage-container {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+  }
+
+  /* Bubble sits directly on top of the avatar */
+  .compact-speech-bubble {
+    order: 1 !important;
+    width: 92% !important;
+    max-width: 330px !important;
+    margin: 0 auto 4px auto !important;
+    padding: 8px 12px !important;
+    font-size: 0.84rem !important;
+  }
+
+  /* Arrow points down to head/hair with ZERO gap */
+  .compact-bubble-arrow {
+    bottom: -7px !important;
+    top: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+    border-top: 7px solid var(--bubble-bg, #ffffff) !important;
+    border-bottom: none !important;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.12)) !important;
+  }
+
+  [dir="rtl"] .compact-bubble-arrow {
+    left: 50% !important;
+    right: auto !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+    border-top: 7px solid var(--bubble-bg, #ffffff) !important;
+    border-bottom: none !important;
+  }
+
+  /* Avatar image pins its head directly to the top edge */
+  .avatar-pose-wrapper {
+    order: 2 !important;
+    width: auto !important;
+    height: clamp(190px, 28vh, 240px) !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  .avatar-pose-img {
+    width: auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: top center !important;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) !important;
+  }
+
+  .avatar-ground-shadow {
+    bottom: 2px !important;
+    width: 100px !important;
+    height: 10px !important;
+  }
+}

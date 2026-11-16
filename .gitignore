@@ -1,0 +1,54 @@
+# Environment & Secrets
+.env
+.env.local
+*.secret
+
+# Python & Streamlit
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+.streamlit/secrets.toml
+app_dashboard_backup.py
+
+# Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Scratch & Temporary
+scratch/
+.system_generated/
+
+# Working draft documents & spreadsheets
+*.docx
+*.xlsx
+
+# Working draft images in root
+*.jpg
+*.jpeg
+!assets/**/*.jpg
+!assets/**/*.jpeg
+
+# Duplicate PDFs in root
+/Mostafa_CV.pdf
+/Electricity_Theft_Detection_Infographic.pdf
+assets/ETD_DigiLians_Infographic.pdf
+
+# Raw unoptimized poses
+assets/poses/original_1024/
