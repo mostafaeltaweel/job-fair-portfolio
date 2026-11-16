@@ -115,8 +115,5 @@ npx serve .
    - Under **Source**, select **Deploy from a branch** (`main` branch, root `/`).
    - Click **Save**. Your site will be live at `https://<YOUR_GITHUB_USERNAME>.github.io/<YOUR_REPO_NAME>/`!
 
-3. **Deploy the Streamlit App to Streamlit Cloud:**
-   - Visit [share.streamlit.io](https://share.streamlit.io/).
-   - Select your repo and branch `main`, set `app.py` as the main file path.
-   - In **Advanced Settings**, paste your `GEMINI_API_KEY` under Secrets.
-   - Click **Deploy**!
+3. **Deploy the Streamlit App to cloudflare :**
+   - Visit(https://2baea7d7.job-fair-portfolio.pages.dev/).
