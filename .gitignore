@@ -3,7 +3,10 @@
 .env.local
 *.secret
 
-# Python & Streamlit
+# Python & Streamlit (Local Only)
+requirements.txt
+app.py
+app_dashboard_backup.py
 __pycache__/
 *.py[cod]
 *$py.class
@@ -14,7 +17,6 @@ venv/
 ENV/
 .venv/
 .streamlit/secrets.toml
-app_dashboard_backup.py
 
 # Node & Package Managers
 node_modules/
