@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+.vscode
+.streamlit
+scratch
+*.py
+*.docx
+*.xlsx
+*.log
+.env*
+requirements.txt

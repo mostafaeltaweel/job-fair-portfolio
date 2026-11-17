@@ -25,7 +25,7 @@
      - LinkedIn Profile (`https://www.linkedin.com/in/mostafa-eltaweel`)
      - Graduation Infographic Modal
      - Verified Credentials Hub (PL-300, DP-900, Google, IBM, DigiLians SD)
-     - WhatsApp Direct Instant Chat (`https://wa.me/201112611898`)
+     - WhatsApp Direct Instant Chat (`https://wa.me/201022938076`)
      - Theme Toggle (`#000000` Dark / `#FFFFFF` Light) & Language Switcher (EN / عربي)
    - **Center Stage:**
      - Candidate Brand Pill: `Mostafa Eltaweel _Applied AI & Data Analysis  Spicialize Deplome | DigiLians`

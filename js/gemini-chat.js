@@ -199,8 +199,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يمكنك التواصل مع مصطفى مباشرة عبر واتساب: https://wa.me/201112611898 أو بالضغط على أيقونة الواتساب في الشريط الأيسر."
-          : "You can reach Mostafa directly on WhatsApp: https://wa.me/201112611898 or by clicking the WhatsApp icon on the left dock.",
+          ? "يمكنك التواصل مع مصطفى مباشرة عبر واتساب: https://wa.me/201022938076 أو بالضغط على أيقونة الواتساب في الشريط الأيسر."
+          : "You can reach Mostafa directly on WhatsApp: https://wa.me/201022938076 or by clicking the WhatsApp icon on the left dock.",
         highlight: "whatsapp",
         pose: "thumbs_up",
         lang: lang
@@ -219,8 +219,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يسعد مصطفى دائماً بالتواصل معكم! يمكنك مراسلته عبر الإيميل mostafa.eltaweel000@gmail.com أو واتساب: https://wa.me/201112611898 أو زيارة حسابه على LinkedIn."
-          : "Mostafa would love to connect! You can reach him via email at mostafa.eltaweel000@gmail.com, WhatsApp at https://wa.me/201112611898, or via LinkedIn.",
+          ? "يسعد مصطفى دائماً بالتواصل معكم! يمكنك مراسلته عبر الإيميل mostafa.eltaweel000@gmail.com أو واتساب: https://wa.me/201022938076 أو زيارة حسابه على LinkedIn."
+          : "Mostafa would love to connect! You can reach him via email at mostafa.eltaweel000@gmail.com, WhatsApp at https://wa.me/201022938076, or via LinkedIn.",
         highlight: "linkedin",
         pose: "thumbs_up",
         lang: lang

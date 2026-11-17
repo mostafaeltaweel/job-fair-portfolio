@@ -16,9 +16,9 @@ const KNOWLEDGE_BASE = {
     program: "SD (Specialized Diploma)",
     track: "Applied AI & Data Analytics",
     initiative: "DigiLians (الرواد الرقميون) - MCIT & Egyptian Military Academy",
-    phone: "+20 111 261 1898",
-    phoneAlt: "+20 102 293 8076",
-    whatsapp: "https://wa.me/201112611898",
+    phone: "+20 102 293 8076",
+    phoneAlt: "+20 111 261 1898",
+    whatsapp: "https://wa.me/201022938076",
     email: "mostafa.eltaweel000@gmail.com",
     location: "Giza, Egypt",
     linkedin: "https://www.linkedin.com/in/mostafa-eltaweel",
@@ -123,8 +123,8 @@ const KNOWLEDGE_BASE = {
     {
       id: "contact_hire_details",
       topics: ["contact", "hire", "job", "email", "phone", "whatsapp", "linkedin", "تواصل", "وظيفة", "مقابلة", "رقم", "واتساب", "لينكد"],
-      ar: "يسعدني جداً مقابلتك ومناقشة فرص العمل في تحليل البيانات وذكاء الأعمال! يمكنك تحميل سيرتي الذاتية PDF من اليسار، أو التواصل مباشرة عبر واتساب: +201112611898، أو لينكد إن: linkedin.com/in/mostafa-eltaweel.",
-      en: "I'd love to connect and discuss Data Analyst and BI opportunities! You can download my CV PDF directly from the left dock, chat on WhatsApp (+201112611898), or connect on LinkedIn (linkedin.com/in/mostafa-eltaweel)."
+      ar: "يسعدني جداً مقابلتك ومناقشة فرص العمل في تحليل البيانات وذكاء الأعمال! يمكنك تحميل سيرتي الذاتية PDF من اليسار، أو التواصل مباشرة عبر واتساب: +201022938076، أو لينكد إن: linkedin.com/in/mostafa-eltaweel.",
+      en: "I'd love to connect and discuss Data Analyst and BI opportunities! You can download my CV PDF directly from the left dock, chat on WhatsApp (+201022938076), or connect on LinkedIn (linkedin.com/in/mostafa-eltaweel)."
     }
   ]
 };

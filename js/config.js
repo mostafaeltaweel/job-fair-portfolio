@@ -53,7 +53,7 @@ RULES:
 
 CONTACT DETAILS (share when the recruiter asks to interview, get in touch, or download the CV):
 "You can reach Mostafa directly:
-WhatsApp: https://wa.me/201112611898
+WhatsApp: https://wa.me/201022938076
 Email: mostafa.eltaweel000@gmail.com
 LinkedIn: https://www.linkedin.com/in/mostafa-eltaweel
 Portfolio: https://mostafaeltaweel.github.io/mostafa-eltaweel-portfolio/

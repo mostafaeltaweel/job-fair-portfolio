@@ -263,19 +263,45 @@ class AppController {
       try {
         const result = await GeminiChatService.ask(query, targetLang);
 
+        // Dynamic topic detection to make sidebar icons interact with the conversation
+        const combinedText = `${query} ${result.speech || ''} ${result.highlight || ''}`.toLowerCase();
+        const activeTopics = new Set();
+
         if (result.highlight && result.highlight !== 'none') {
-          this.highlightIcon(result.highlight);
+          activeTopics.add(result.highlight);
         }
+
+        if (/cv|سيرة|سيرة ذاتية|resume|curriculum|الملف/.test(combinedText)) {
+          activeTopics.add('cv');
+        }
+        if (/whatsapp|واتساب|تواصل|contact|call|phone|هاتف|رقم|reach|chat|interview|مقابلة/.test(combinedText)) {
+          activeTopics.add('whatsapp');
+        }
+        if (/linkedin|لينكد|حساب/.test(combinedText)) {
+          activeTopics.add('linkedin');
+        }
+        if (/project|projects|مشروع|مشاريع|portfolio|بورتفوليو|streamlit|demo|ديمو|hotel|fraud|theft|pricing|capstone/.test(combinedText)) {
+          activeTopics.add('portfolio');
+        }
+        if (/cert|certificate|شهادة|شهادات|credential|credentials|pl-300|pl300|dp-900|dp900|microsoft|google|ibm|digilians|مايكروسوفت/.test(combinedText)) {
+          activeTopics.add('credentials');
+        }
+        if (/infographic|انفوجرافيك|انفوجراف|etd|poster|بوستر/.test(combinedText)) {
+          activeTopics.add('infographic');
+        }
+
+        // Trigger pulse on all matching sidebar dock icons
+        activeTopics.forEach(topic => this.highlightIcon(topic));
 
         const actions = [];
         const isAr = targetLang === 'ar';
         const speechLower = (result.speech || '').toLowerCase();
 
         // 1. Direct WhatsApp button
-        if (result.highlight === 'whatsapp' || speechLower.includes('wa.me') || speechLower.includes('whatsapp') || speechLower.includes('واتساب')) {
+        if (activeTopics.has('whatsapp') || speechLower.includes('wa.me') || speechLower.includes('whatsapp') || speechLower.includes('واتساب')) {
           actions.push({
             label: isAr ? 'مراسلة عبر واتساب ↗' : 'Chat on WhatsApp ↗',
-            url: 'https://wa.me/201112611898',
+            url: 'https://wa.me/201022938076',
             icon: '💬'
           });
         }
@@ -349,8 +375,14 @@ class AppController {
     if (targetId) {
       const btn = document.getElementById(targetId);
       if (btn) {
+        btn.classList.remove('pulse-active');
+        // Force reflow for immediate visual restart
+        void btn.offsetWidth;
         btn.classList.add('pulse-active');
-        setTimeout(() => btn.classList.remove('pulse-active'), 2200);
+        if (btn._pulseTimeout) clearTimeout(btn._pulseTimeout);
+        btn._pulseTimeout = setTimeout(() => {
+          btn.classList.remove('pulse-active');
+        }, 4000);
       }
     }
   }

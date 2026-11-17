@@ -1,19 +1,51 @@
 /**
- * Cloudflare Pages Function: /api/chat
- * Secure Edge API Proxy for Google Gemini 2.5 Flash
+ * Cloudflare Worker / Cloudflare Pages Advanced Mode Worker
+ * Unified Edge API proxy for Gemini 3.5 Flash Lite + Static Asset Server
  */
 
-export async function onRequestPost(context) {
-  const { request, env } = context;
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
 
-  // CORS Headers
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Content-Type": "application/json"
-  };
+    // Standard CORS headers
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Content-Type": "application/json"
+    };
 
+    // 1. CORS Preflight
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        headers: {
+          ...corsHeaders,
+          "Access-Control-Max-Age": "86400"
+        }
+      });
+    }
+
+    // 2. Chat API Route: /api/chat
+    if (url.pathname === "/api/chat") {
+      if (request.method !== "POST") {
+        return new Response(JSON.stringify({ error: "Method not allowed" }), {
+          status: 405,
+          headers: corsHeaders
+        });
+      }
+      return handleChat(request, env, corsHeaders);
+    }
+
+    // 3. Static Assets: Serves index.html, css, js, assets, pdfs, etc.
+    if (env.ASSETS) {
+      return env.ASSETS.fetch(request);
+    }
+
+    return new Response("Not Found", { status: 404 });
+  }
+};
+
+async function handleChat(request, env, corsHeaders) {
   try {
     const body = await request.json();
     const prompt = (body.prompt || "").trim();
@@ -30,12 +62,16 @@ export async function onRequestPost(context) {
       }), { headers: corsHeaders });
     }
 
-    // Read Key securely from Cloudflare Environment Variable (set in Pages Dashboard)
+    // Read Key securely from Cloudflare Environment Variable
     const apiKey = env.GEMINI_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({
-        error: "GEMINI_API_KEY environment variable is not configured."
-      }), { status: 500, headers: corsHeaders });
+        speech: lang === "ar"
+          ? "أهلاً بك! أنا المساعد الذكي لمصطفى الطويل. يسعدني استعراض خبرات مصطفى في Power BI وتحليل البيانات، ومناقشة مشاريع الذكاء الاصطناعي أو تحميل السيرة الذاتية."
+          : "Welcome! I am Mostafa Eltaweel's AI assistant. I'd be glad to discuss his Power BI and data analysis expertise, his Applied AI projects, or share his CV.",
+        highlight: "cv",
+        pose: "talk"
+      }), { headers: corsHeaders });
     }
 
     const systemInstruction = `You are the personal AI assistant of Mostafa Eltaweel, a Data Analyst & BI Specialist. You talk directly to recruiters and HR managers on his behalf.
@@ -84,7 +120,7 @@ RULES:
 
 CONTACT DETAILS (share when the recruiter asks to interview, get in touch, or download the CV):
 "You can reach Mostafa directly:
-WhatsApp: https://wa.me/201112611898
+WhatsApp: https://wa.me/201022938076
 Email: mostafa.eltaweel000@gmail.com
 LinkedIn: https://www.linkedin.com/in/mostafa-eltaweel
 Portfolio: https://mostafaeltaweel.github.io/mostafa-eltaweel-portfolio/
@@ -144,15 +180,4 @@ You must ALWAYS respond with ONLY a valid JSON object matching:
       headers: corsHeaders
     });
   }
-}
-
-export async function onRequestOptions() {
-  return new Response(null, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Max-Age": "86400"
-    }
-  });
 }
