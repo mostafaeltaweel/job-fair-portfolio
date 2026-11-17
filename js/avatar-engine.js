@@ -177,9 +177,37 @@ class AvatarEngine {
       } else {
         clearInterval(this.typingInterval);
         this.isTyping = false;
+        // Make all URLs, emails and links directly clickable
+        this.speechText.innerHTML = this.linkify(this.speechText.textContent);
         if (onComplete) onComplete();
       }
     }, speed);
+  }
+
+  linkify(rawText) {
+    if (!rawText) return '';
+    const urlPattern = /(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/g;
+    const emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+
+    let html = rawText.replace(urlPattern, (url) => {
+      let label = url;
+      if (url.includes('wa.me')) {
+        label = '💬 WhatsApp Direct ↗';
+      } else if (url.includes('linkedin.com')) {
+        label = '💼 LinkedIn Profile ↗';
+      } else if (url.includes('theft-electric-detection-c.streamlit.app')) {
+        label = '⚡ Live Demo ↗';
+      } else if (url.includes('mostafaeltaweel.github.io')) {
+        label = '🌐 Web Portfolio ↗';
+      }
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="bubble-direct-link" title="Open directly">${label}</a>`;
+    });
+
+    html = html.replace(emailPattern, (email) => {
+      return `<a href="mailto:${email}" class="bubble-direct-link" title="Send email">✉️ ${email}</a>`;
+    });
+
+    return html;
   }
 
   setSpeechText(text) {

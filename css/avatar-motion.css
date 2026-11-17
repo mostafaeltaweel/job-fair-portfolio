@@ -149,6 +149,26 @@
   word-break: break-word;
 }
 
+/* Clickable Direct Links inside Bubble */
+.bubble-direct-link {
+  color: #0284c7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .bubble-direct-link {
+  color: #38bdf8;
+}
+
+.bubble-direct-link:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
 /* Action Links inside Bubble */
 .compact-speech-actions {
   display: flex;

@@ -267,15 +267,44 @@ class AppController {
           this.highlightIcon(result.highlight);
         }
 
-        // Only CV link allowed in the speech bubble
-        const actions = [
-          {
-            label: targetLang === 'ar' ? 'تحميل الـ CV (PDF)' : 'Download CV (PDF)',
-            download: 'assets/Mostafa_CV.pdf',
-            filename: 'Mostafa_Mohamed_Eltaweel_CV.pdf',
-            icon: '📄'
-          }
-        ];
+        const actions = [];
+        const isAr = targetLang === 'ar';
+        const speechLower = (result.speech || '').toLowerCase();
+
+        // 1. Direct WhatsApp button
+        if (result.highlight === 'whatsapp' || speechLower.includes('wa.me') || speechLower.includes('whatsapp') || speechLower.includes('واتساب')) {
+          actions.push({
+            label: isAr ? 'مراسلة عبر واتساب ↗' : 'Chat on WhatsApp ↗',
+            url: 'https://wa.me/201112611898',
+            icon: '💬'
+          });
+        }
+
+        // 2. Direct LinkedIn button
+        if (result.highlight === 'linkedin' || speechLower.includes('linkedin')) {
+          actions.push({
+            label: isAr ? 'الملف الشخصي LinkedIn ↗' : 'LinkedIn Profile ↗',
+            url: 'https://www.linkedin.com/in/mostafa-eltaweel',
+            icon: '💼'
+          });
+        }
+
+        // 3. Direct Live Demo / Portfolio button
+        if (result.highlight === 'portfolio' || speechLower.includes('streamlit') || speechLower.includes('demo') || speechLower.includes('ديمو')) {
+          actions.push({
+            label: isAr ? 'معاينة المشروع (Live Demo) ↗' : 'Live Demo ↗',
+            url: 'https://theft-electric-detection-c.streamlit.app/',
+            icon: '⚡'
+          });
+        }
+
+        // 4. Always include CV Direct Download button
+        actions.push({
+          label: isAr ? 'تحميل الـ CV (PDF)' : 'Download CV (PDF)',
+          download: 'assets/Mostafa_CV.pdf',
+          filename: 'Mostafa_Mohamed_Eltaweel_CV.pdf',
+          icon: '📄'
+        });
 
         // Deliver Answer in authentic Speaking pose with ultra-compact bubble
         this.avatarEngine.speak(result.speech, {
