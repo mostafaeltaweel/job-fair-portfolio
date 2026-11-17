@@ -93,10 +93,13 @@ class AvatarEngine {
   playGreeting() {
     this.checkCollisionAndEvade();
     this.setPose('greeting');
-    const msg = "Hello and welcome! I’m Mostafa’s Assistant. 🌟 Looking for the next Data Analyst for your team? You can easily download CV, explore his specialized project demos, or ask me anything about his expertise in Data Analysis & Applied AI to see how can you add value to your business! Let me know if you’d like to get in touch with me directly.";
+    const isAr = document.documentElement.lang === 'ar' || document.documentElement.dir === 'rtl';
+    const msg = isAr
+      ? "أهلاً بك، أنا المساعد الشخصي لمصطفى الطويل. ما هي الوظيفة أو الدور المطلوب لديكم؟ سأخبرك بدقة كيف تتطابق خبراته ومشاريعه مع متطلباتكم."
+      : "Hi, I'm Mostafa's assistant. Which role are you hiring for? I'll tell you quickly how he fits.";
     const actions = [
       { 
-        label: "Download CV (PDF)", 
+        label: isAr ? "تحميل السيرة الذاتية (PDF)" : "Download CV (PDF)", 
         download: "assets/Mostafa_CV.pdf", 
         filename: "Mostafa_Mohamed_Eltaweel_CV.pdf", 
         icon: "📄" 

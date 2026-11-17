@@ -23,8 +23,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "أهلاً بك! يمكنك تحميل سيرتي الذاتية كملف PDF مباشرة من أيقونة الـ CV على اليسار. معتمد Microsoft PL-300 وخريج برنامج SD مسار Applied AI & Data Analytics."
-          : "Welcome! You can download my complete CV PDF directly using the CV icon on the left dock. Microsoft PL-300 certified Data Analyst.",
+          ? "يمكنك تحميل السيرة الذاتية الرسمية لمصطفى بصيغة PDF مباشرة من أيقونة الـ CV على اليسار. مصطفى معتمد كـ Microsoft PL-300 وخريج دبلومة الذكاء الاصطناعي التطبيقي من DigiLians."
+          : "You can download Mostafa's official CV PDF directly from the CV icon on the left dock. He is Microsoft PL-300 certified and holds an Applied AI diploma from DigiLians.",
         highlight: "cv",
         pose: "point",
         lang: lang
@@ -38,8 +38,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "حاصل على شهادة Google Data Analytics الاحترافية المعتمدة عبر Coursera، والتي تغطي تنظيف البيانات، SQL، R، وتحويل البيانات لقرارات تجارية. اضغط على أيقونة الشهادات للتوثيق."
-          : "I earned the official Google Data Analytics Professional Certificate via Coursera, covering SQL, R, data cleaning, and business insights. Click the credentials icon to verify.",
+          ? "مصطفى حاصل على شهادة Google Data Analytics Professional عبر Coursera، والتي أتقن من خلالها SQL ولغة R واستخلاص الرؤى لاتخاذ القرارات التجارية."
+          : "Mostafa earned the Google Data Analytics Professional Certificate via Coursera, mastering SQL, R programming, and data-driven business decision insights.",
         highlight: "credentials",
         pose: "thumbs_up",
         lang: lang
@@ -52,8 +52,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "حاصل على شهادة Machine Learning with Python المعتمدة من IBM عبر Coursera، متقناً خوارزميات الانحدار، التصنيف، والتجميع بـ Scikit-Learn. اضغط على أيقونة الشهادات للتحقق."
-          : "I hold IBM's Machine Learning with Python certificate via Coursera, proficient in regression, classification, clustering, and Scikit-Learn pipelines. Click credentials to verify.",
+          ? "مصطفى حاصل على شهادة Machine Learning with Python من شركة IBM، ويتقن بناء وتطبيق خوارزميات التعلم الآلي عبر مكتبة Scikit-Learn."
+          : "Mostafa holds the IBM Machine Learning with Python certificate, proficient in regression, classification, and clustering pipelines using Scikit-Learn.",
         highlight: "credentials",
         pose: "thumbs_up",
         lang: lang
@@ -64,12 +64,15 @@ class SmartFallbackEngine {
       text.includes('pl-300') || 
       text.includes('pl300') || 
       text.includes('microsoft') || 
-      text.includes('مايكروسوفت')
+      text.includes('مايكروسوفت') ||
+      text.includes('dp-900') ||
+      text.includes('dp900') ||
+      text.includes('azure')
     ) {
       return {
         speech: lang === 'ar'
-          ? "أنا معتمد رسمياً كـ Microsoft Power BI Data Analyst Associate (PL-300). أتقن نمذجة الـ Star-Schema، معادلات DAX المتقدمة، وخطوط Power Query ETL. اضغط على أيقونة الشهادات للتحقق الرسمي."
-          : "Officially certified Microsoft Power BI Data Analyst Associate (PL-300). Expert in Star-Schema modeling, advanced DAX time-intelligence, and Power Query ETL. Click credentials to verify.",
+          ? "مصطفى حاصل على شهادتين معتمدتين دولياً من مايكروسوفت: PL-300 في تحليل البيانات بـ Power BI، و DP-900 في أساسيات بيانات السحابة Azure."
+          : "Mostafa is dual-certified by Microsoft: PL-300 (Power BI Data Analyst Associate) and DP-900 (Azure Data Fundamentals).",
         highlight: "credentials",
         pose: "thumbs_up",
         lang: lang
@@ -85,8 +88,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "أحمل 3 اعتمادات دولية موثقة: Microsoft PL-300، Google Data Analytics، و IBM Machine Learning، بالإضافة لدبلومة SD من DigiLians. اضغط على أيقونة الشهادات لاستعراضها وروابط التحقق."
-          : "I hold 3 internationally verified credentials: Microsoft PL-300, Google Data Analytics, and IBM Machine Learning, plus the DigiLians SD Diploma. Click the credentials icon to review and verify.",
+          ? "يحمل مصطفى 4 اعتمادات دولية موثقة: Microsoft PL-300، Microsoft Azure DP-900، Google Data Analytics، و IBM Machine Learning. اضغط على أيقونة الشهادات للتحقق الرسمي."
+          : "Mostafa holds 4 verified credentials: Microsoft PL-300, Microsoft Azure DP-900, Google Data Analytics, and IBM Machine Learning. Click the credentials icon to verify.",
         highlight: "credentials",
         pose: "thumbs_up",
         lang: lang
@@ -103,8 +106,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "حللت 119,390 حجز فندقي عبر SQL Server ولوحة Power BI لمعالجة تذبذب الإلغاءات (37%). أثبتت أن الحجوزات المبكرة لأكثر من 90 يوماً عبر وكلاء السفر تتضاعف احتمالية إلغائها وابتكرت خطط تسعير غير مستردة."
-          : "Diagnosed 119,390 hotel booking records in Power BI and SQL Server. Found bookings >90 days via OTAs doubled cancellations (37% baseline); engineered dynamic non-refundable pricing tiers.",
+          ? "حلل مصطفى 119,390 حجزاً فندقياً في Power BI و SQL Server، وأثبت أن الحجوزات المبكرة لأكثر من 90 يوماً عبر وكالات السفر عبر الإنترنت تزيد احتمالية إلغائها بمعدل 2.1 ضعف."
+          : "Mostafa analyzed 119,390 hotel bookings in Power BI & SQL Server, proving bookings made 90+ days ahead through OTAs were 2.1x more likely to be cancelled.",
         highlight: "portfolio",
         pose: "point",
         lang: lang
@@ -120,8 +123,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "حللت 1.05 مليون معاملة مالية للكشف عن أنماط الاحتيال النادرة (0.11%). أثبتت التحليلات أن 100% من حالات الاحتيال تركزت حصرياً في نمطي TRANSFER و CASH_OUT، مما قلص جهد الرقابة بـ 98%."
-          : "Audited 1,048,575 transactions in Power BI for fraud anomalies. Proved 100% of confirmed fraud concentrated in TRANSFER and CASH_OUT modes, reducing manual audit noise by 98%.",
+          ? "دقق مصطفى أكثر من مليون معاملة مالية (1,048,575) في Power BI، وأثبت أن 100% من الاحتيال المؤكد تركز حصرياً في مدفوعات TRANSFER و CASH_OUT، مما قلص جهد التدقيق اليدوي بـ 98%."
+          : "Mostafa audited 1,048,575 transactions in Power BI, proving 100% of confirmed fraud was concentrated in TRANSFER and CASH_OUT payments, cutting manual audit noise by 98%.",
         highlight: "portfolio",
         pose: "point",
         lang: lang
@@ -138,8 +141,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "في مشروع HMS SaaS قمت بقيادة Group D لهندسة محرك الأسعار وخدمة PricingService وقواعد المواسم والتسعير الديناميكي بحسب نسبة الإشغال وتعدد العملات بدقة عشرية."
-          : "In the HMS project, I led Group D to architect the Rates & Pricing Engine: PricingService, seasonal overlap rules, multi-currency precision, and dynamic occupancy pricing.",
+          ? "في مشروع HMS SaaS، قاد مصطفى فريق Group D لهندسة محرك الأسعار وخدمة PricingService لحساب التسعير الديناميكي بحسب نسبة الإشغال وتعدد العملات."
+          : "In the HMS project, Mostafa was the Group D Lead architecting the Rates & Pricing Engine: PricingService, seasonal overrides, and dynamic occupancy pricing.",
         highlight: "portfolio",
         pose: "point",
         lang: lang
@@ -158,8 +161,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "مشروع تخرجي ETD-XAI حلل 18,193 عداد ذكي بنموذج CNN-LSTM محققاً دقة 94.0% و AUC-ROC 0.983! يمكنك الضغط على أيقونة الإنفوجرافيك أو تجربة الديمو السحابي عبر Streamlit."
-          : "My capstone ETD-XAI analyzed 18,193 smart meters with Dual-Branch CNN-LSTM, reaching 94.0% accuracy and 0.983 AUC! Check out the infographic or live Streamlit demo.",
+          ? "مشروع تخرج مصطفى ETD-XAI هو نظام ذكي حلل 18,193 عداداً ذكياً بنموذج Dual-Branch CNN-LSTM محققاً دقة 94.0% و 0.983 ROC-AUC مع تفسير النتائج بـ Explainable AI."
+          : "Mostafa's capstone ETD-XAI analyzed 18,193 smart meters with Dual-Branch CNN-LSTM, reaching 94.0% accuracy and 0.983 ROC-AUC with Explainable AI and live demo.",
         highlight: "infographic",
         pose: "point",
         lang: lang
@@ -178,8 +181,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "بنيت لوحة مؤشرات المبيعات بـ Power BI بمخطط النجمة (Star-Schema) ومقاييس DAX لحساب صافي الإيرادات وهامش الربح ومتوسط الطلب."
-          : "I developed the Sales Analytics Dashboard in Power BI using Star-Schema modeling and advanced DAX measures for Revenue, Margins, and AOV.",
+          ? "مصطفى معتمد رسمياً كـ Microsoft Power BI Data Analyst (PL-300). بنى لوحات تحكم متقدمة بمخطط النجمة (Star-Schema) ومقاييس DAX لحساب صافي الإيرادات وهامش الربح."
+          : "Mostafa is a Microsoft Certified Power BI Data Analyst (PL-300). He built advanced Star-Schema dashboards with DAX measures for net revenue, profit margins, and AOV.",
         highlight: "portfolio",
         pose: "thumbs_up",
         lang: lang
@@ -196,8 +199,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يمكنك مراسلتي فورياً عبر واتساب على الرقم: 01112611898 (+201112611898) أو الضغط على أيقونة الواتساب في الشريط الجانبي!"
-          : "You can message me instantly on WhatsApp at +201112611898 or click the WhatsApp icon on the left dock!",
+          ? "يمكنك التواصل مع مصطفى مباشرة عبر واتساب: https://wa.me/201112611898 أو بالضغط على أيقونة الواتساب في الشريط الأيسر."
+          : "You can reach Mostafa directly on WhatsApp: https://wa.me/201112611898 or by clicking the WhatsApp icon on the left dock.",
         highlight: "whatsapp",
         pose: "thumbs_up",
         lang: lang
@@ -216,8 +219,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يسعدني جداً التواصل معك لمناقشة فرص العمل في تحليل البيانات! اضغط على أيقونة LinkedIn على اليسار أو راسلني عبر واتساب: +201112611898."
-          : "I would love to connect and discuss Data Analyst opportunities! Click the LinkedIn icon on the left or reach out directly on WhatsApp (+201112611898).",
+          ? "يسعد مصطفى دائماً بالتواصل معكم! يمكنك مراسلته عبر الإيميل mostafa.eltaweel000@gmail.com أو واتساب: https://wa.me/201112611898 أو زيارة حسابه على LinkedIn."
+          : "Mostafa would love to connect! You can reach him via email at mostafa.eltaweel000@gmail.com, WhatsApp at https://wa.me/201112611898, or via LinkedIn.",
         highlight: "linkedin",
         pose: "thumbs_up",
         lang: lang
@@ -233,12 +236,14 @@ class SmartFallbackEngine {
       text.includes('law') || 
       text.includes('دراسة') || 
       text.includes('تعليم') ||
-      text.includes('digilians')
+      text.includes('digilians') ||
+      text.includes('تجنيد') ||
+      text.includes('military')
     ) {
       return {
         speech: lang === 'ar'
-          ? "خريج برنامج SD (Specialized Diploma) مسار Applied AI & Data Analytics بمبادرة DigiLians، وحاصل على ليسانس الحقوق من جامعة القاهرة مما يعزز دقتين التحليلية والامتثال."
-          : "Graduate of the SD Program, Applied AI & Data Analytics Track from DigiLians, with an LL.B. Law degree providing rigorous analytical and compliance logic.",
+          ? "تخرج مصطفى من برنامج الدبلومة المتخصصة SD في Applied AI & Data Analytics بمبادرة DigiLians، ويحمل ليسانس الحقوق من جامعة القاهرة مما يعزز منطقه التحليلي وحوكمة البيانات، وقد أتم الخدمة العسكرية بالكامل."
+          : "Mostafa completed the 11-month SD Diploma in Applied AI & Data Analytics from DigiLians, holds an LL.B. Law degree from Cairo University for governance rigor, and has completed his military service.",
         highlight: "cv",
         pose: "wave",
         lang: lang
@@ -251,12 +256,16 @@ class SmartFallbackEngine {
       text.includes('خبرة') || 
       text.includes('experience') || 
       text.includes('dewan') || 
-      text.includes('itechpro')
+      text.includes('itechpro') ||
+      text.includes('قصة') ||
+      text.includes('story') ||
+      text.includes('xceed') ||
+      text.includes('idh')
     ) {
       return {
         speech: lang === 'ar'
-          ? "عملت كأخصائي دعم فني لنظم ERP في شركة Dewan Soft مدققاً للفواتير الإلكترونية على منظومة الضرائب، وأعمل كمهندس AI متدرب في ITechPro-eg للأتمتة بـ n8n."
-          : "I worked as an ERP Support Specialist at DewanSoft auditing e-invoices with the tax portal, and currently intern at ITechPro-eg building AI automation.",
+          ? "بدأ مصطفى مسيرته في خدمة عملاء Xceed ثم استقبال IDH ثم أخصائي دعم فني لنظم ERP بشركة Dewan Soft لحل 10-20 تذكرة يومياً، وتدقيق الفواتير على بوابة الضرائب. حالياً يعمل كمتدرب AI في ITechPro-eg."
+          : "Mostafa started at Xceed, then IDH, and served as ERP Support Specialist at Dewan Soft solving 10-20 daily cases and auditing e-invoices. He currently interns at ITechPro-eg building AI workflows.",
         highlight: "cv",
         pose: "point",
         lang: lang
@@ -273,8 +282,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "طورت وكيلاً ذكياً للأتمتة بـ n8n و Groq لفرز العملاء المحتملين عبر تليجرام وجيميل، مقلصاً زمن الرد من ساعات إلى أقل من 3 ثوانٍ مع التسجيل في CRM!"
-          : "I built an autonomous lead qualification agent using n8n and Groq LLMs across Telegram & Gmail, slashing response time from hours to <3 seconds into PostgreSQL CRM.",
+          ? "طوّر مصطفى وكيلاً ذكياً للأتمتة بـ n8n و Groq LLM لفرز وتأهيل العملاء المحتملين عبر تليجرام وجيميل، مقلصاً زمن الرد من ساعات إلى أقل من 3 ثوانٍ مع التسجيل في CRM."
+          : "Mostafa built an autonomous lead qualification agent using n8n and Groq LLMs across Telegram & Gmail, slashing response time from hours to <3 seconds into CRM.",
         highlight: "portfolio",
         pose: "talk",
         lang: lang
@@ -291,8 +300,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "حللت بيانات استبيان عالمي لأكثر من 630 متخصص بيانات، موضحاً توزيع الرواتب، وتفضيلات الأدوات بين Power BI وبايثون، ومؤشرات الرضا الوظيفي."
-          : "I analyzed a global survey of 630+ data professionals, visualizing salary benchmarks, tool adoption (Power BI vs Python), and work-life satisfaction in Power BI.",
+          ? "حلل مصطفى استبياناً عالمياً شمل أكثر من 630 متخصص بيانات في Power BI، مستعرضاً توزيع الرواتب، وتفضيلات الأدوات بين Power BI وبايثون، ومؤشرات الرضا المهني."
+          : "Mostafa analyzed a global survey of 630+ data professionals in Power BI, visualizing salary benchmarks, tool preferences (Power BI vs Python), and job satisfaction.",
         highlight: "portfolio",
         pose: "talk",
         lang: lang
@@ -320,8 +329,8 @@ class SmartFallbackEngine {
     // Default Greeting / Prompt Response
     return {
       speech: lang === 'ar'
-        ? "أهلاً ومرحباً بك! أنا مساعد مصطفى الذكي. 🌟 هل تبحث عن محلل البيانات القادم لفريقك؟ يمكنك بسهولة تحميل السيرة الذاتية (CV)، أو استكشاف عروض مشاريعه المتخصصة، أو سؤالي عن أي شيء يخص خبراته في تحليل البيانات والذكاء الاصطناعي التطبيقي لترى كيف يمكنه إضافة قيمة حقيقية لأعمالك! وأخبرني إذا كنت ترغب في التواصل معه مباشرة."
-        : "Hello and welcome! I’m Mostafa’s Assistant. 🌟 Looking for the next Data Analyst for your team? You can easily download CV, explore his specialized project demos, or ask me anything about his expertise in Data Analysis & Applied AI to see how can you add value to your business! Let me know if you’d like to get in touch with me directly.",
+        ? "أهلاً بك، أنا المساعد الشخصي لمصطفى الطويل. ما هي الوظيفة أو الدور المطلوب لديكم؟ سأخبرك بدقة كيف تتطابق خبراته ومشاريعه مع متطلباتكم."
+        : "Hi, I'm Mostafa's assistant. Which role are you hiring for? I'll tell you quickly how he fits.",
       highlight: "cv",
       pose: "wave",
       lang: lang
