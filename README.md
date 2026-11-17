@@ -116,4 +116,4 @@ npx serve .
    - Click **Save**. Your site will be live at `https://<YOUR_GITHUB_USERNAME>.github.io/<YOUR_REPO_NAME>/`!
 
 3. **Deploy the Streamlit App to cloudflare :**
-   - Visit(https://2baea7d7.job-fair-portfolio.pages.dev/).
+   - Visit(https://01eef068.job-fair-portfolio.pages.dev/).
