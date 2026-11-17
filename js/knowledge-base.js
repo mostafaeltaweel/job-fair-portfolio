@@ -123,8 +123,8 @@ const KNOWLEDGE_BASE = {
     {
       id: "contact_hire_details",
       topics: ["contact", "hire", "job", "email", "phone", "whatsapp", "linkedin", "تواصل", "وظيفة", "مقابلة", "رقم", "واتساب", "لينكد"],
-      ar: "يسعدني جداً مقابلتك ومناقشة فرص العمل في تحليل البيانات وذكاء الأعمال! يمكنك تحميل سيرتي الذاتية PDF من اليسار، أو التواصل مباشرة عبر واتساب: +201022938076، أو لينكد إن: linkedin.com/in/mostafa-eltaweel.",
-      en: "I'd love to connect and discuss Data Analyst and BI opportunities! You can download my CV PDF directly from the left dock, chat on WhatsApp (+201022938076), or connect on LinkedIn (linkedin.com/in/mostafa-eltaweel)."
+      ar: "يسعدني جداً مقابلتك ومناقشة فرص العمل في تحليل البيانات وذكاء الأعمال! يمكنك تحميل سيرتي الذاتية PDF من اليسار، أو التواصل مباشرة عبر أيقونة الواتساب أو زيارة حسابي على لينكد إن بالشريط الجانبي.",
+      en: "I'd love to connect and discuss Data Analyst and BI opportunities! You can download my CV PDF directly from the left dock, chat via WhatsApp, or connect on LinkedIn using the sidebar icons."
     }
   ]
 };

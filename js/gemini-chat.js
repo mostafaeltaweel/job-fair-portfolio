@@ -23,9 +23,47 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يمكنك تحميل السيرة الذاتية الرسمية لمصطفى بصيغة PDF مباشرة من أيقونة الـ CV على اليسار. مصطفى معتمد كـ Microsoft PL-300 وخريج دبلومة الذكاء الاصطناعي التطبيقي من DigiLians."
-          : "You can download Mostafa's official CV PDF directly from the CV icon on the left dock. He is Microsoft PL-300 certified and holds an Applied AI diploma from DigiLians.",
+          ? "يمكنك تحميل السيرة الذاتية الرسمية لمصطفى بصيغة PDF مباشرة من أيقونة الـ CV المضيئة في الشريط الأيسر."
+          : "You can download Mostafa's official CV PDF directly from the highlighted CV icon on the left dock.",
         highlight: "cv",
+        pose: "point",
+        lang: lang
+      };
+    }
+
+    // 1.1 Web Portfolio
+    if (
+      text.includes('portfolio') || 
+      text.includes('بورتفوليو') || 
+      text.includes('معرض') || 
+      text.includes('سابقة أعمال') ||
+      text.includes('موقعك') ||
+      text.includes('موقع مصطفى')
+    ) {
+      return {
+        speech: lang === 'ar'
+          ? "يسعدني استعراض أعمالي ومشاريعي معكم! يمكنك تصفح معرض الأعمال والبورتفوليو المتكامل لمصطفى عبر أيقونة البورتفوليو المضيئة في الشريط الأيسر."
+          : "I'd love to share my projects! You can explore Mostafa's full web portfolio and case studies via the highlighted Portfolio icon on the left dock.",
+        highlight: "portfolio",
+        pose: "point",
+        lang: lang
+      };
+    }
+
+    // 1.2 Live Project Demo (Streamlit ETD)
+    if (
+      text.includes('demo') || 
+      text.includes('ديمو') || 
+      text.includes('عرض حي') || 
+      text.includes('تجربة') ||
+      text.includes('streamlit') || 
+      text.includes('ستريمليت')
+    ) {
+      return {
+        speech: lang === 'ar'
+          ? "يمكنك تجربة العرض الحي التفاعلي لنموذج كشف سرقة الكهرباء (ETD-XAI) واختبار الحالات مباشرة عبر أيقونة الديمو المضيئة في الشريط الأيسر."
+          : "You can test the interactive live demo of the Electricity Theft Detection model directly via the highlighted Demo icon on the left dock.",
+        highlight: "demo",
         pose: "point",
         lang: lang
       };
@@ -199,8 +237,8 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يمكنك التواصل مع مصطفى مباشرة عبر واتساب: https://wa.me/201022938076 أو بالضغط على أيقونة الواتساب في الشريط الأيسر."
-          : "You can reach Mostafa directly on WhatsApp: https://wa.me/201022938076 or by clicking the WhatsApp icon on the left dock.",
+          ? "يسعد مصطفى دائماً بالتواصل معكم! يمكنك مراسلته مباشرة بالضغط على أيقونة الواتساب المضيئة في الشريط الأيسر."
+          : "Mostafa would love to connect! You can reach him directly by clicking the highlighted WhatsApp icon on the left dock.",
         highlight: "whatsapp",
         pose: "thumbs_up",
         lang: lang
@@ -219,9 +257,9 @@ class SmartFallbackEngine {
     ) {
       return {
         speech: lang === 'ar'
-          ? "يسعد مصطفى دائماً بالتواصل معكم! يمكنك مراسلته عبر الإيميل mostafa.eltaweel000@gmail.com أو واتساب: https://wa.me/201022938076 أو زيارة حسابه على LinkedIn."
-          : "Mostafa would love to connect! You can reach him via email at mostafa.eltaweel000@gmail.com, WhatsApp at https://wa.me/201022938076, or via LinkedIn.",
-        highlight: "linkedin",
+          ? "يسعد مصطفى بمناقشة الفرص الوظيفية وإجراء المقابلات! يمكنك التواصل معه مباشرة عبر أيقونة الواتساب أو زيارة حسابه على لينكد إن عبر الشريط الأيسر."
+          : "Mostafa is eager to discuss career opportunities and interviews! You can connect with him directly via the WhatsApp or LinkedIn icons on the left dock.",
+        highlight: "whatsapp",
         pose: "thumbs_up",
         lang: lang
       };

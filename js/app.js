@@ -28,6 +28,25 @@ class AppController {
 
     // 3. Bind UI Events
     this.bindEvents();
+
+    // 4. Initialize dynamic dock icon click handlers (stops motion when clicked)
+    this.initDockInteractions();
+  }
+
+  initDockInteractions() {
+    const dockElements = document.querySelectorAll('.dock-icon-btn, .dock-logo-container');
+    dockElements.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.remove('pulse-active');
+      });
+    });
+  }
+
+  clearActiveHighlights() {
+    const dockElements = document.querySelectorAll('.dock-icon-btn, .dock-logo-container');
+    dockElements.forEach(btn => {
+      btn.classList.remove('pulse-active');
+    });
   }
 
   bindEvents() {
@@ -249,6 +268,9 @@ class AppController {
     input.value = '';
     input.blur();
 
+    // 1. Clear any previously moving / pulsing dock icons when a new message is sent
+    this.clearActiveHighlights();
+
     const isArabic = /[\u0600-\u06FF]/.test(query);
     const targetLang = isArabic ? 'ar' : this.currentLang;
 
@@ -258,7 +280,7 @@ class AppController {
       document.documentElement.dir = 'ltr';
     }
 
-    // 1. Thinking state
+    // 2. Thinking state
     this.avatarEngine.playThinking(async () => {
       try {
         const result = await GeminiChatService.ask(query, targetLang);
@@ -271,69 +293,61 @@ class AppController {
           activeTopics.add(result.highlight);
         }
 
+        // 1. Web Portfolio (https://mostafaeltaweel.github.io/mostafa-eltaweel-portfolio/)
+        if (/portfolio|بورتفوليو|معرض|معرض أعمال|معرض الاعمال|web portfolio|موقع|موقعه|سابقة أعمال/.test(combinedText)) {
+          activeTopics.add('portfolio');
+        }
+
+        // 2. Live Project Demo (Streamlit ETD Capstone)
+        if (/demo|ديمو|عرض حي|سرقة كهرباء|سرقة الكهرباء|theft|electric|smart meter|عدادات|streamlit|ستريمليت|تطبيق حي|تجربة النموذج/.test(combinedText)) {
+          activeTopics.add('demo');
+        }
+
+        // 3. CV / Resume
         if (/cv|سيرة|سيرة ذاتية|resume|curriculum|الملف/.test(combinedText)) {
           activeTopics.add('cv');
         }
-        if (/whatsapp|واتساب|تواصل|contact|call|phone|هاتف|رقم|reach|chat|interview|مقابلة/.test(combinedText)) {
+
+        // 4. WhatsApp / Direct Contact / Interview
+        if (/whatsapp|واتساب|تواصل|اتصال|contact|call|phone|هاتف|رقم|reach|chat|interview|مقابلة|وظيفة|توظيف/.test(combinedText)) {
           activeTopics.add('whatsapp');
         }
-        if (/linkedin|لينكد|حساب/.test(combinedText)) {
+
+        // 5. LinkedIn Profile
+        if (/linkedin|لينكد|حساب لينكد|لينكدان/.test(combinedText)) {
           activeTopics.add('linkedin');
         }
-        if (/project|projects|مشروع|مشاريع|portfolio|بورتفوليو|streamlit|demo|ديمو|hotel|fraud|theft|pricing|capstone/.test(combinedText)) {
-          activeTopics.add('portfolio');
-        }
+
+        // 6. Credentials / Certifications
         if (/cert|certificate|شهادة|شهادات|credential|credentials|pl-300|pl300|dp-900|dp900|microsoft|google|ibm|digilians|مايكروسوفت/.test(combinedText)) {
           activeTopics.add('credentials');
         }
+
+        // 7. Graduation Infographic
         if (/infographic|انفوجرافيك|انفوجراف|etd|poster|بوستر/.test(combinedText)) {
           activeTopics.add('infographic');
         }
 
-        // Trigger pulse on all matching sidebar dock icons
+        // General project queries if neither specific portfolio nor demo was flagged
+        if (/project|projects|مشروع|مشاريع|hotel|fraud/.test(combinedText) && !activeTopics.has('portfolio') && !activeTopics.has('demo')) {
+          activeTopics.add('demo');
+        }
+
+        // Trigger continuous pulse on all matching sidebar dock icons (keeps moving until clicked or next message)
         activeTopics.forEach(topic => this.highlightIcon(topic));
+
+        // Sanitize speech to ensure NO raw URLs, emails or phone numbers appear in the chat text
+        let speech = (result.speech || '').trim();
+        speech = speech.replace(/https?:\/\/[^\s]+/g, '').trim();
+        speech = speech.replace(/\+?20[0-9]{9,10}/g, '').replace(/01[0-2,5][0-9]{8}/g, '').trim();
+        speech = speech.replace(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+/g, '').trim();
+        speech = speech.replace(/\s*:\s*$/g, '.').replace(/\s{2,}/g, ' ');
 
         const actions = [];
         const isAr = targetLang === 'ar';
-        const speechLower = (result.speech || '').toLowerCase();
 
-        // 1. Direct WhatsApp button
-        if (activeTopics.has('whatsapp') || speechLower.includes('wa.me') || speechLower.includes('whatsapp') || speechLower.includes('واتساب')) {
-          actions.push({
-            label: isAr ? 'مراسلة عبر واتساب ↗' : 'Chat on WhatsApp ↗',
-            url: 'https://wa.me/201022938076',
-            icon: '💬'
-          });
-        }
-
-        // 2. Direct LinkedIn button
-        if (result.highlight === 'linkedin' || speechLower.includes('linkedin')) {
-          actions.push({
-            label: isAr ? 'الملف الشخصي LinkedIn ↗' : 'LinkedIn Profile ↗',
-            url: 'https://www.linkedin.com/in/mostafa-eltaweel',
-            icon: '💼'
-          });
-        }
-
-        // 3. Direct Live Demo / Portfolio button
-        if (result.highlight === 'portfolio' || speechLower.includes('streamlit') || speechLower.includes('demo') || speechLower.includes('ديمو')) {
-          actions.push({
-            label: isAr ? 'معاينة المشروع (Live Demo) ↗' : 'Live Demo ↗',
-            url: 'https://theft-electric-detection-c.streamlit.app/',
-            icon: '⚡'
-          });
-        }
-
-        // 4. Always include CV Direct Download button
-        actions.push({
-          label: isAr ? 'تحميل الـ CV (PDF)' : 'Download CV (PDF)',
-          download: 'assets/Mostafa_CV.pdf',
-          filename: 'Mostafa_Mohamed_Eltaweel_CV.pdf',
-          icon: '📄'
-        });
-
-        // Deliver Answer in authentic Speaking pose with ultra-compact bubble
-        this.avatarEngine.speak(result.speech, {
+        // Deliver Answer in authentic Speaking pose without raw link clutter
+        this.avatarEngine.speak(speech, {
           pose: 'speaking',
           actions: actions,
           speed: 18
@@ -343,18 +357,12 @@ class AppController {
         console.error(err);
         this.avatarEngine.speak(
           targetLang === 'ar'
-            ? "يسعدني استعراض مشاريعي وخبراتي! يمكنك تحميل سيرتي الذاتية بالزر أدناه."
-            : "I'd be glad to discuss my projects and data expertise! You can download my CV below.",
+            ? "يسعدني استعراض مشاريعي وخبراتي! يمكنك الاطلاع على السيرة الذاتية ومعرض الأعمال عبر الأيقونات المضيئة في الشريط الأيسر."
+            : "I'd be glad to discuss my projects and data expertise! You can explore my CV and web portfolio via the highlighted icons on the left dock.",
           {
             pose: 'speaking',
-            actions: [
-              { 
-                label: targetLang === 'ar' ? 'تحميل الـ CV (PDF)' : 'Download CV (PDF)', 
-                download: 'assets/Mostafa_CV.pdf', 
-                filename: 'Mostafa_Mohamed_Eltaweel_CV.pdf', 
-                icon: '📄' 
-              }
-            ]
+            actions: [],
+            speed: 18
           }
         );
       }
@@ -365,6 +373,7 @@ class AppController {
     const iconMap = {
       cv: 'dockCvBtn',
       portfolio: 'dockPortfolioBtn',
+      demo: 'dockDemoBtn',
       linkedin: 'dockLinkedinBtn',
       infographic: 'dockInfographicBtn',
       credentials: 'dockCredentialsBtn',
@@ -376,13 +385,18 @@ class AppController {
       const btn = document.getElementById(targetId);
       if (btn) {
         btn.classList.remove('pulse-active');
-        // Force reflow for immediate visual restart
         void btn.offsetWidth;
+        // Keeps moving continuously until the user clicks on it or sends another message!
         btn.classList.add('pulse-active');
-        if (btn._pulseTimeout) clearTimeout(btn._pulseTimeout);
-        btn._pulseTimeout = setTimeout(() => {
-          btn.classList.remove('pulse-active');
-        }, 4000);
+      }
+    }
+
+    if (actionName === 'portfolio') {
+      const logo = document.getElementById('dockLogoBtn');
+      if (logo) {
+        logo.classList.remove('pulse-active');
+        void logo.offsetWidth;
+        logo.classList.add('pulse-active');
       }
     }
   }

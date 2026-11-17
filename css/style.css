@@ -144,7 +144,7 @@ html, body {
 .dock-icons-stack {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 11px;
   align-items: center;
 }
 
@@ -201,34 +201,48 @@ html, body {
   transform: translateX(0);
 }
 
-/* Pulsing highlight effect when referred by AI */
+/* Pulsing & Moving highlight effect when referred by AI */
 @keyframes icon-pulse {
   0% {
-    transform: scale(1);
+    transform: scale(1) translateY(0);
     box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
     border-color: #38bdf8;
     color: #38bdf8;
   }
+  25% {
+    transform: scale(1.22) translateY(-4px);
+    box-shadow: 0 0 22px 5px rgba(56, 189, 248, 0.6), 0 0 0 8px rgba(56, 189, 248, 0.25);
+    border-color: #38bdf8;
+    color: #38bdf8;
+  }
   50% {
-    transform: scale(1.22);
-    box-shadow: 0 0 20px 4px rgba(56, 189, 248, 0.5), 0 0 0 12px rgba(56, 189, 248, 0);
+    transform: scale(1.16) translateY(2px);
+    box-shadow: 0 0 26px 7px rgba(56, 189, 248, 0.7), 0 0 0 16px rgba(56, 189, 248, 0);
+    border-color: #38bdf8;
+    color: #38bdf8;
+  }
+  75% {
+    transform: scale(1.2) translateY(-2px);
+    box-shadow: 0 0 18px 4px rgba(56, 189, 248, 0.5), 0 0 0 8px rgba(56, 189, 248, 0.1);
     border-color: #38bdf8;
     color: #38bdf8;
   }
   100% {
-    transform: scale(1);
+    transform: scale(1) translateY(0);
     box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
     border-color: #38bdf8;
     color: #38bdf8;
   }
 }
 
-.dock-icon-btn.pulse-active {
-  animation: icon-pulse 1.3s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+.dock-icon-btn.pulse-active,
+.dock-logo-container.pulse-active {
+  animation: icon-pulse 1.35s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
   border-color: #38bdf8 !important;
   color: #38bdf8 !important;
-  background: rgba(56, 189, 248, 0.15) !important;
-  z-index: 10;
+  background: rgba(56, 189, 248, 0.2) !important;
+  z-index: 25 !important;
+  will-change: transform, box-shadow;
 }
 
 /* Bottom Controls (Theme & Lang Switchers) */
